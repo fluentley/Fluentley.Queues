@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -9,12 +11,16 @@ namespace Fluentley.Queues.Options
     {
         public string QueueName { get; set; }
 
-        public string[] QueueIds { get; set; }
+        public List<string> QueueIds { get; set; }
 
         public CancellationToken QueueCancellationToken { get; set; }
         public OperationContext QueueOperationContext { get; set; }
         public QueueRequestOptions QueueRequestOptions { get; set; }
 
+        public DeleteMessageOption()
+        {
+            QueueIds = new List<string>();
+        }
         public IDeleteMessageOption Name(string value)
         {
             QueueName = value.ToLower();
@@ -23,7 +29,9 @@ namespace Fluentley.Queues.Options
 
         public IDeleteMessageOption Ids(params string[] value)
         {
-            QueueIds = value;
+            if (value?.Any() ?? false)
+                QueueIds.AddRange(value);
+
             return this;
         }
 

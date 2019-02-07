@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,11 +15,23 @@ namespace Fluentley.Queues.Tests
         }
 
         [TestMethod]
-        public async Task CreateQueueTest()
+        public async Task QueueCrudTest()
         {
+            var queueName = "TestQueue";
+
             await _service.CreateMessage<string>(options => options
-                .Name("TestQueue")
-                .Message("Hello World"));
+                .Name(queueName)
+                .Message("Hello World 2"));
+
+            var messages = await _service.Messages(options => options
+                .Name(queueName)
+            );
+
+
+            Assert.AreEqual(messages.Any(), true);
+
+
+            await _service.DeleteMessage(options => options.Name(queueName).Ids(messages.First().Id));
         }
     }
 }

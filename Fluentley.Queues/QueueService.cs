@@ -64,7 +64,7 @@ namespace Fluentley.Queues
 
             var messages = await Messages(messageOptions => messageOptions
                 .CancellationToken(queueOption.QueueCancellationToken)
-                .Ids(queueOption.QueueIds)
+                .Ids(queueOption?.QueueIds?.ToArray())
                 .Name(queueOption.QueueName)
                 .OperationContext(queueOption.QueueOperationContext)
                 .RequestOptions(queueOption.QueueRequestOptions)
@@ -95,7 +95,7 @@ namespace Fluentley.Queues
 
             var messages = await queueClient.GetMessagesAsync(numberOfMessages, queueOption.QueueCancellationToken);
 
-            if (queueOption.QueueIds.Any())
+            if (queueOption?.QueueIds?.Any() ?? false)
                 messages = messages.Where(x => queueOption.QueueIds.Contains(x.Id));
 
             return messages;

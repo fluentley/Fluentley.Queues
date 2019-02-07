@@ -1,7 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha.1.0</Version>
+    <Authors>Emre@Fluentley</Authors>
+    <Company>Fluentley</Company>
+    <Copyright>Copyright © Fluentley 2019</Copyright>
+    <PackageLicenseUrl>https://github.com/fluentley/Fluentley.Queues/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/fluentley/Fluentley.Queues</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/fluentley/Fluentley.QueryBuilder/raw/master/FluentleyLogo3.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/fluentley/Fluentley.Queues</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Fluent Queues, Fluentley, Azure Queues</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

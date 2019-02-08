@@ -9,18 +9,17 @@ namespace Fluentley.Queues.Options
 {
     internal class DeleteMessageOption : IDeleteMessageOption
     {
-        public string QueueName { get; set; }
-
-        public List<string> QueueIds { get; set; }
-
-        public CancellationToken QueueCancellationToken { get; set; }
-        public OperationContext QueueOperationContext { get; set; }
-        public QueueRequestOptions QueueRequestOptions { get; set; }
-
         public DeleteMessageOption()
         {
             QueueIds = new List<string>();
         }
+
+        public string QueueName { get; set; }
+        public List<string> QueueIds { get; set; }
+        public CancellationToken QueueCancellationToken { get; set; }
+        public OperationContext QueueOperationContext { get; set; }
+        public QueueRequestOptions QueueRequestOptions { get; set; }
+
         public IDeleteMessageOption Name(string value)
         {
             QueueName = value.ToLower();

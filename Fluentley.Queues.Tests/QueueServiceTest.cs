@@ -27,9 +27,7 @@ namespace Fluentley.Queues.Tests
                 .Name(queueName)
             );
 
-
             Assert.AreEqual(messages.Any(), true);
-
 
             await _service.DeleteMessage(options => options.Name(queueName).Ids(messages.First().Id));
         }

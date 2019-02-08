@@ -9,16 +9,11 @@ namespace Fluentley.Queues.Options
     internal class CreateMessageOption<T> : ICreateMessageOption<T>
     {
         public OperationContext QueueOperationContext { get; set; }
-
         public QueueRequestOptions QueueRequestOptions { get; set; }
         public TimeSpan? QueueScheduledOn { get; set; }
-
         public TimeSpan? QueueExpiresIn { get; set; }
-
         public string QueueName { get; set; }
-
         public CancellationToken QueueCancellationToken { get; set; }
-
         public T QueueMessage { get; set; }
         public QueuePermissions QueuePermissions { get; set; }
 

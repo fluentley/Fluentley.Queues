@@ -8,9 +8,7 @@ namespace Fluentley.Queues.Options
     internal class PeekMessageOption : IPeekMessageOption
     {
         public string QueueName { get; set; }
-
         public CancellationToken QueueCancellationToken { get; set; }
-
         public OperationContext QueueOperationContext { get; set; }
         public QueueRequestOptions QueueRequestOptions { get; set; }
 

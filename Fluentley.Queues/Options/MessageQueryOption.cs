@@ -9,18 +9,17 @@ namespace Fluentley.Queues.Options
 {
     internal class MessageQueryOption : IMessageQueryOption
     {
-        public string QueueName { get; set; }
-
-        public List<string> QueueIds { get; set; }
-
-        public CancellationToken QueueCancellationToken { get; set; }
-        public OperationContext QueueOperationContext { get; set; }
-        public QueueRequestOptions QueueRequestOptions { get; set; }
-
         public MessageQueryOption()
         {
             QueueIds = new List<string>();
         }
+
+        public string QueueName { get; set; }
+        public List<string> QueueIds { get; set; }
+        public CancellationToken QueueCancellationToken { get; set; }
+        public OperationContext QueueOperationContext { get; set; }
+        public QueueRequestOptions QueueRequestOptions { get; set; }
+
         public IMessageQueryOption Name(string value)
         {
             QueueName = value.ToLower();

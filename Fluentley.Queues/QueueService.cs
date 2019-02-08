@@ -24,13 +24,11 @@ namespace Fluentley.Queues
             var queueOption = new CreateMessageOption<T>();
             options(queueOption);
 
-
             var queueClient = _client.GetQueueReference(queueOption.QueueName);
 
             await queueClient.CreateIfNotExistsAsync(queueOption.QueueRequestOptions, queueOption.QueueOperationContext, queueOption.QueueCancellationToken);
 
             var queueMessage = new CloudQueueMessage(JsonConvert.SerializeObject(queueOption.QueueMessage));
-
 
             await queueClient.AddMessageAsync(queueMessage, queueOption.QueueExpiresIn, queueOption.QueueScheduledOn, queueOption.QueueRequestOptions, queueOption.QueueOperationContext, queueOption.QueueCancellationToken);
 
@@ -42,14 +40,12 @@ namespace Fluentley.Queues
             var queueOption = new PeekMessageOption();
             options(queueOption);
 
-
             var queueClient = _client.GetQueueReference(queueOption.QueueName);
 
             var isExists = await queueClient.ExistsAsync(queueOption.QueueRequestOptions, queueOption.QueueOperationContext, queueOption.QueueCancellationToken);
 
             if (!isExists)
                 return null;
-
 
             return await queueClient.PeekMessageAsync(queueOption.QueueRequestOptions, queueOption.QueueOperationContext, queueOption.QueueCancellationToken);
         }
@@ -58,7 +54,6 @@ namespace Fluentley.Queues
         {
             var queueOption = new DeleteMessageOption();
             options(queueOption);
-
 
             var queueClient = _client.GetQueueReference(queueOption.QueueName);
 
@@ -78,7 +73,6 @@ namespace Fluentley.Queues
             var queueOption = new MessageQueryOption();
             options(queueOption);
 
-
             var queueClient = _client.GetQueueReference(queueOption.QueueName);
 
             var isExists = await queueClient.ExistsAsync();
@@ -91,7 +85,6 @@ namespace Fluentley.Queues
             var numberOfMessages = queueClient.ApproximateMessageCount ?? 0;
             if (numberOfMessages == 0)
                 return new List<CloudQueueMessage>();
-
 
             var messages = await queueClient.GetMessagesAsync(numberOfMessages, queueOption.QueueCancellationToken);
 
